@@ -1,6 +1,10 @@
 window.onload = function () {
+    //
+
     /**----------------------------------------------------------------------
+                           
                             Console Utility Functions
+
      ----------------------------------------------------------------------*/
 
     var appStart = Date.now();
@@ -20,8 +24,16 @@ window.onload = function () {
         }, t);
     };
 
+    //
+
+    //
+
+    //
+
     /**----------------------------------------------------------------------
+                                   
                                     Constants
+
      ----------------------------------------------------------------------*/
 
     var TYPES = {
@@ -36,8 +48,16 @@ window.onload = function () {
         },
     };
 
+    //
+
+    //
+
+    //
+
     /**----------------------------------------------------------------------
+
                                 Backbone Models
+
      ----------------------------------------------------------------------*/
 
     var Card = Backbone.Model.extend({
@@ -59,12 +79,18 @@ window.onload = function () {
         },
     });
 
+    //
+
+    //
+
+    //
+
     /**----------------------------------------------------------------------
      
                             Backbone Collections
 
      
-     * Presently one collection<Card> represents all stored data
+     * * Presently one collection<Card> represents all stored data
 
      ----------------------------------------------------------------------*/
 
@@ -76,11 +102,17 @@ window.onload = function () {
         localStorage: new Backbone.LocalStorage('act-flash'),
     });
 
+    //
+
+    //
+
+    //
+
     /**----------------------------------------------------------------------
      
                                 Backbone Views
       
-     * 'Views' responsibible for:
+     * * 'Views' responsibible for:
      *      - Listening to collection/model events as a controller
      *      - Providing an api to use in the console and, eventually, 
      *      - within HTML
@@ -126,6 +158,12 @@ window.onload = function () {
             queueClear(10000);
         },
 
+        //
+
+        //
+
+        //
+
         /**----------------------------------------------------------------------
          
                                 View Helper Functions
@@ -170,6 +208,12 @@ window.onload = function () {
             }
         },
 
+        //
+
+        //
+
+        //
+
         /**----------------------------------------------------------------------
          
                             Collating Helper Functions
@@ -182,7 +226,13 @@ window.onload = function () {
 
         getCardsByIntervention: function (intervention) {},
 
-        isCardOfStrategy: function (card, strategy) {}, // ...
+        isCardOfStrategy: function (card, strategy) {},
+
+        //
+
+        //
+
+        //
 
         /**----------------------------------------------------------------------
          
@@ -191,6 +241,12 @@ window.onload = function () {
          ----------------------------------------------------------------------*/
 
         getCardsWithoutLinksToGoals: function () {},
+
+        //
+
+        //
+
+        //
 
         /**----------------------------------------------------------------------
          
@@ -217,6 +273,12 @@ window.onload = function () {
         },
     });
 
+    //
+
+    //
+
+    //
+
     /**----------------------------------------------------------------------
          
                             Global Namespace Helper Functions
@@ -233,6 +295,12 @@ window.onload = function () {
 
     console.log('app:', app);
 };
+
+//
+
+//
+
+//
 
 /**
  * TODO LIST
