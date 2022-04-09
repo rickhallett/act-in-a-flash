@@ -1,8 +1,19 @@
 window.onload = function () {
     var appStart = Date.now();
 
+    var clearPending = false;
+
     var getDelta = function () {
         return (Date.now() - appStart).toString() + 'ms';
+    };
+
+    var queueClear = function (t) {
+        console.log(`%cConsole clear pending ${t}ms`, 'color:purple;');
+        if (clearPending) clearTimeout(clearPending);
+        clearPending = setTimeout(() => {
+            clearPending = false;
+            console.clear();
+        }, t);
     };
 
     var TYPES = {
@@ -73,13 +84,17 @@ window.onload = function () {
                     }
                 },
             });
+
+            queueClear(10000);
         },
 
+        //TODO: this is an unhandled error...
         addCard: function (newCard) {
             if (!newCard.isValid()) {
                 throw new Error(newCard.validationError);
             }
             if (this.nameIsUnique(newCard.get('name'))) {
+                queueClear(30000);
                 this.collection.create(newCard);
             }
         },
@@ -111,6 +126,14 @@ window.onload = function () {
             }
         },
 
+        getCardsByPhase: function (phase) {},
+
+        getCardsByStrategy: function (strategy) {},
+
+        getCardsByIntervention: function (intervention) {},
+
+        isCardOfStrategy: function (card, strategy) {}, // ...
+
         getBackup: function () {
             return JSON.stringify(this.collection.localStorage.findAll());
         },
@@ -138,6 +161,7 @@ window.onload = function () {
     var types = (window.types = TYPES);
     var card = (window.Card = Card);
     var cards = (window.Cards = Cards);
+    var clear = (window.c = console.clear);
 
     console.log('app:', app);
 };
