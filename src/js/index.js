@@ -79,7 +79,36 @@ window.onload = function () {
             if (!newCard.isValid()) {
                 throw new Error(newCard.validationError);
             }
-            this.collection.create(newCard);
+            if (this.nameIsUnique(newCard.get('name'))) {
+                this.collection.create(newCard);
+            }
+        },
+
+        nameIsUnique: function (name) {
+            if (this.collection.findWhere({ name: name })) {
+                throw new Error(`'${name}' already exists.`);
+            }
+            return true;
+        },
+
+        editCard: function (card) {
+            if (!newCard.isValid()) {
+                throw new Error(newCard.validationError);
+            }
+            return this.collection.set(card);
+        },
+
+        editCardByName: function (cardName, attrs) {
+            if (!_.isObject(attrs)) {
+                throw new Error('Missing attribute modifiers');
+            }
+            try {
+                this.collection.findWhere({ name: cardName }).set(attrs).save();
+            } catch ({ name }) {
+                if (name === TypeError().name) {
+                    console.error(`'${cardName}' does not exist`);
+                }
+            }
         },
 
         getBackup: function () {
