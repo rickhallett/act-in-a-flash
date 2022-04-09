@@ -1,0 +1,35 @@
+{
+    "questions": [
+        {
+            "id": "3d179209-7328-4e67-914f-1e31dd1fd82e",
+            "name": "The Big Question",
+            "type": "session.ax",
+            "hex": "hexapoint.values",
+            "body": "What is your life's greatest purpose?",
+            "links": [],
+            "tags": []
+        }
+    ],
+    "exercises": [
+        {
+            "id": "fb310efc-7ebc-4e7b-b6b8-bdcf52d3ab99",
+            "name": "Just noticing",
+            "type": "session.tx",
+            "hex": "hexapoint.self-as-context",
+            "body": "Can you notice that you are noticing, right now?",
+            "links": [],
+            "tags": []
+        }
+    ],
+    "metaphors": [
+        {
+            "id": "fb310efc-7ebc-4e7b-b6b8-bdcf52d3ab99",
+            "name": "Demons on a boat",
+            "type": "session.tx",
+            "hex": "hexapoint.self-as-context",
+            "body": "Imagine life is like a boat...",
+            "links": [],
+            "tags": []
+        }
+    ]
+}
