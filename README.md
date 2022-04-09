@@ -1,3 +1,3 @@
-# actingup
+# act-in-a-flash
 
-Componentising the ACT psychotherapy approach
+Learning by rote
