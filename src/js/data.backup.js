@@ -1,3 +1,9 @@
+/**
+ * Goals -> Strategies -> Interventions
+ * All Strategies and Interventions point to a goal card by id
+ * With the parent as reference point, each card type is associated with the others
+ * There is no need for interventions to formally/directly relate to strategies
+ */
 var BACKUP = [
     {
         name: 'Informed Consent',
@@ -152,5 +158,68 @@ var BACKUP = [
         card: 'STRATEGIES',
         body: 'Avoid the old agenda; claiming the new',
         id: '7840101d-90a1-4329-8072-5d5b06a130ca',
+    },
+    {
+        name: 'Focus on workability',
+        phase: 'CREATIVE_HOPELESSNESS',
+        card: 'INTERVENTIONS',
+        body: 'Focus on workability',
+        id: 'effa7c83-0bf0-476e-9a44-a964f8c9a593',
+    },
+    {
+        name: 'Talking to describe vs talking to make a difference',
+        phase: 'CREATIVE_HOPELESSNESS',
+        card: 'INTERVENTIONS',
+        body: 'Talking to describe vs talking to make a difference',
+        id: 'ee32524a-3e72-404a-8904-9fbbc626f91d',
+    },
+    {
+        name: 'Use of paradox',
+        phase: 'CREATIVE_HOPELESSNESS',
+        card: 'INTERVENTIONS',
+        body: 'Use of paradox',
+        id: 'f1d662eb-379b-4025-aa38-389c82ca2a1b',
+    },
+    {
+        name: 'Use of metaphor',
+        phase: 'CREATIVE_HOPELESSNESS',
+        card: 'INTERVENTIONS',
+        body: 'Use of metaphor',
+        id: '7d1a116d-719f-4f16-8647-c2d9dec1ef4b',
+    },
+    {
+        name: 'Man in the Hole Metaphor',
+        phase: 'CREATIVE_HOPELESSNESS',
+        card: 'INTERVENTIONS',
+        body: 'Man in the Hole Metaphor',
+        id: '78db2922-7149-4ef3-bfae-020f8f20973c',
+    },
+    {
+        name: 'Chinese Handcuffs Metaphor',
+        phase: 'CREATIVE_HOPELESSNESS',
+        card: 'INTERVENTIONS',
+        body: 'Chinese Handcuffs Metaphor',
+        id: '9f86ad6b-f9cc-4c50-a2f9-0b918464e5ad',
+    },
+    {
+        name: 'Feedback Screech Metaphor',
+        phase: 'CREATIVE_HOPELESSNESS',
+        card: 'INTERVENTIONS',
+        body: 'Feedback Screech Metaphor',
+        id: '76468618-b43b-440a-954a-dfe7a8d220bd',
+    },
+    {
+        name: 'Tug-of-War Metaphor',
+        phase: 'CREATIVE_HOPELESSNESS',
+        card: 'INTERVENTIONS',
+        body: 'Tug-of-War Metaphor',
+        id: 'e2c03947-6de3-462b-a067-dc818f47925d',
+    },
+    {
+        name: 'Learned Skill Metaphors',
+        phase: 'CREATIVE_HOPELESSNESS',
+        card: 'INTERVENTIONS',
+        body: 'Learned Skill Metaphors (e.g. playing music, dancing, games)',
+        id: '06cbd1bc-4d8c-4c00-a848-ec0f6e77b388',
     },
 ];

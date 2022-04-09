@@ -94,7 +94,7 @@ window.onload = function () {
                 throw new Error(newCard.validationError);
             }
             if (this.nameIsUnique(newCard.get('name'))) {
-                queueClear(30000);
+                queueClear(15000);
                 this.collection.create(newCard);
             }
         },
