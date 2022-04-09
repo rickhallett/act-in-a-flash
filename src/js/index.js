@@ -44,7 +44,7 @@ window.onload = function () {
         localStorage: new Backbone.LocalStorage('act-flash'),
     });
 
-    var AppView = Backbone.Collection.extend({
+    var AppView = Backbone.View.extend({
         initialize: function () {
             var self = this;
             var cards = new Cards();
@@ -110,5 +110,5 @@ window.onload = function () {
     var card = (window.Card = Card);
     var cards = (window.Cards = Cards);
 
-    console.log({ app });
+    console.log('app:', app);
 };
