@@ -1,4 +1,10 @@
 window.onload = function () {
+    var appStart = Date.now();
+
+    var getDelta = function () {
+        return (Date.now() - appStart).toString() + 'ms';
+    };
+
     var TYPES = {
         PHASE: {
             CREATIVE_HOPELESSNESS: 'CREATIVE_HOPELESSNESS',
@@ -47,15 +53,18 @@ window.onload = function () {
                 console.log(
                     `%ccards event: %c${eventName}`,
                     'color:orange;',
-                    'color:green;'
+                    'color:green;',
+                    getDelta(),
+                    arguments[1].get('name') || '(Collection)'
                 );
             });
 
             cards.fetch({
                 success: function (collection) {
                     console.log(
-                        `cards fetched: ${Date.now()}`,
-                        JSON.stringify(collection.toJSON(), null, 2)
+                        `%ccards fetched: ${getDelta()}`,
+                        'color: gray;'
+                        // JSON.stringify(collection.toJSON(), null, 2)
                     );
                     self.collection = collection;
                     if (!collection.length) {
@@ -97,6 +106,9 @@ window.onload = function () {
      */
 
     var app = (window.app = new AppView());
+    var types = (window.types = TYPES);
+    var card = (window.Card = Card);
+    var cards = (window.Cards = Cards);
 
     console.log({ app });
 };
