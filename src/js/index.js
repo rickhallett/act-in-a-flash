@@ -15,10 +15,18 @@ window.onload = function () {
         defaults: function () {
             return {
                 name: null,
-                phase: TYPES.PHASE.CREATIVE_HOPELESSNESS,
-                card: TYPES.CARD.GOALS,
+                phase: null,
+                card: null,
                 body: null,
             };
+        },
+
+        validate: function (options) {
+            if (!_.isObject(options)) return;
+            var { name, phase, card, body } = options;
+            if (!name || !phase || !card || !body) {
+                return 'All props are required;';
+            }
         },
     });
 
@@ -30,44 +38,65 @@ window.onload = function () {
         localStorage: new Backbone.LocalStorage('act-flash'),
     });
 
-    var cards = new Cards();
-
-    cards.on('all', function (eventName) {
-        console.log(
-            `%ccards event:emit %c${eventName}`,
-            'color:yellow;',
-            'color:green;'
-        );
-    });
-
-    var c1 = new Card({
-        id: Backbone.idGen(),
-        phase: TYPES.PHASE.CREATIVE_HOPELESSNESS,
-        card: TYPES.CARD.GOALS,
-        name: 'Informed Consent',
-        body: 'Gain informed consent and commitment to therapy',
-    });
-
     var AppView = Backbone.Collection.extend({
-        // el: null,
-
         initialize: function () {
+            var self = this;
+            var cards = new Cards();
+
+            cards.on('all', function (eventName) {
+                console.log(
+                    `%ccards event: %c${eventName}`,
+                    'color:orange;',
+                    'color:green;'
+                );
+            });
+
             cards.fetch({
                 success: function (collection) {
                     console.log(
                         `cards fetched: ${Date.now()}`,
                         JSON.stringify(collection.toJSON(), null, 2)
                     );
-                },
-                error: function (collection, response) {
-                    console.log(`cards not fetched: ${Date.now()}`, {
-                        collection,
-                        response,
-                    });
+                    self.collection = collection;
+                    if (!collection.length) {
+                        console.log('%c***ADDING SEED DATA***', 'color:red;');
+                        self.restoreFromBackup();
+                    }
                 },
             });
         },
+
+        addCard: function (newCard) {
+            if (!newCard.isValid()) {
+                throw new Error(newCard.validationError);
+            }
+            this.collection.create(newCard);
+        },
+
+        getBackup: function () {
+            return JSON.stringify(this.collection.localStorage.findAll());
+        },
+
+        reset: function () {
+            _.chain(this.collection.models)
+                .map((model) => model)
+                .each((model) => model.destroy());
+        },
+
+        restoreFromBackup: function () {
+            _.each(BACKUP, (card) => this.collection.create(card));
+        },
+
+        printStorageTable: function () {
+            console.table(this.collection.toJSON());
+        },
     });
 
-    var app = new AppView();
+    /**
+     * Console
+     */
+
+    var app = (window.app = new AppView());
+
+    console.log({ app });
 };

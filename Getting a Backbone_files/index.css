@@ -1,0 +1,17 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font: 14px monospace, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    line-height: 1.4em;
+    background: #eeeeee;
+    color: #2e6ca7;
+    margin: 0 auto;
+}
+
+#app {
+    margin: auto 1rem;
+}
