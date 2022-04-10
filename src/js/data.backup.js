@@ -18,6 +18,7 @@ var BACKUP = [
         card: 'STRATEGIES',
         body: 'Develop knowledge necessary for informed consent',
         id: '5c39e5c7-c3f6-4f15-9e9b-3a92195b55ef',
+        parent: 'ca55ca4a-6b57-46ca-a696-749ad569dc72',
     },
     {
         name: 'Therapy Contract',
@@ -25,6 +26,7 @@ var BACKUP = [
         card: 'STRATEGIES',
         body: 'Develop therapy contract',
         id: 'beed1d81-cbc1-46e8-ba40-f13fe6f1f471',
+        parent: 'ca55ca4a-6b57-46ca-a696-749ad569dc72',
     },
     {
         name: 'Alternative Treatments',
@@ -32,6 +34,7 @@ var BACKUP = [
         card: 'INTERVENTIONS',
         body: 'Address alternative treatments that are available',
         id: 'ca8ddd8f-a157-478e-bac6-c37aef4f7475',
+        parent: 'ca55ca4a-6b57-46ca-a696-749ad569dc72',
     },
     {
         name: 'Risks vs Benefits',
@@ -39,6 +42,7 @@ var BACKUP = [
         card: 'INTERVENTIONS',
         body: 'Address risks and benefits',
         id: '9657a8e8-4ab7-4d9d-8c7a-efe8684aa796',
+        parent: 'ca55ca4a-6b57-46ca-a696-749ad569dc72',
     },
     {
         name: 'Planned Review',
@@ -46,6 +50,7 @@ var BACKUP = [
         card: 'INTERVENTIONS',
         body: 'Propose a specific time frame to review progress (models reality based tracking)',
         id: '88f88331-22ce-4524-b3b4-86ad2d4ce2b7',
+        parent: 'ca55ca4a-6b57-46ca-a696-749ad569dc72',
     },
     {
         name: 'Role Orientations',
@@ -53,6 +58,7 @@ var BACKUP = [
         card: 'INTERVENTIONS',
         body: 'Orient the person to therapist and client roles',
         id: '67f5e171-2de7-4fda-a146-242d715be377',
+        parent: 'ca55ca4a-6b57-46ca-a696-749ad569dc72',
     },
     {
         name: 'The Change Agenda',
@@ -221,5 +227,33 @@ var BACKUP = [
         card: 'INTERVENTIONS',
         body: 'Learned Skill Metaphors (e.g. playing music, dancing, games)',
         id: '06cbd1bc-4d8c-4c00-a848-ec0f6e77b388',
+    },
+    {
+        name: 'How does that work for you?',
+        phase: 'CREATIVE_HOPELESSNESS',
+        card: 'INTERVENTIONS',
+        body: 'How does that work for you?',
+        id: '16771e7c-9a46-4ec4-9807-5c4fb8d61f15',
+    },
+    {
+        name: 'Tailored interventions',
+        phase: 'CREATIVE_HOPELESSNESS',
+        card: 'INTERVENTIONS',
+        body: 'Inteventions tailored to client feedback',
+        id: '3163be1d-6660-48ad-8ba3-ed6b7bbb32f1',
+    },
+    {
+        name: 'Defocus on hopelessness',
+        phase: 'CREATIVE_HOPELESSNESS',
+        card: 'INTERVENTIONS',
+        body: 'Defocus on hopelessness as belief or feeling; focus on experienced effectss of change efforts',
+        id: '6c66495d-62e7-497f-9336-7ebc51565a67',
+    },
+    {
+        name: 'Proscribe change efforts',
+        phase: 'CREATIVE_HOPELESSNESS',
+        card: 'INTERVENTIONS',
+        body: 'Proscribe change efforts',
+        id: '16e0c129-5824-49a3-b2f8-99eae7de141e',
     },
 ];

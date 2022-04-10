@@ -166,11 +166,10 @@ window.onload = function () {
 
         /**----------------------------------------------------------------------
          
-                                View Helper Functions
+                                View API Functions
 
          ----------------------------------------------------------------------*/
 
-        //TODO: this is an unhandled error...
         addCard: function (newCard) {
             if (!newCard.isValid()) {
                 throw new Error(newCard.validationError);
@@ -179,13 +178,6 @@ window.onload = function () {
                 queueClear(15000);
                 this.collection.create(newCard);
             }
-        },
-
-        nameIsUnique: function (name) {
-            if (this.collection.findWhere({ name: name })) {
-                throw new Error(`'${name}' already exists.`);
-            }
-            return true;
         },
 
         editCard: function (card) {
@@ -220,7 +212,62 @@ window.onload = function () {
 
          ----------------------------------------------------------------------*/
 
+        getCard: function (opts) {
+            if (
+                !_.isObject(opts) ||
+                (!_.has(opts, 'id') && !_.has(opts, 'name'))
+            )
+                throw new Error('Invalid retrieval options');
+            if (opts.id) return this.collection.get(opts.id);
+            if (opts.name) return this.getCardByName(opts.name);
+        },
+
+        getCardByName: function (name) {
+            return this.collection.findWhere({ name }) || undefined;
+        },
+
+        nameIsUnique: function (name) {
+            if (this.collection.findWhere({ name: name })) {
+                throw new Error(`'${name}' already exists.`);
+            }
+            return true;
+        },
+
+        listAllGoals: function () {
+            console.log(
+                this.collection
+                    .where({ card: TYPES.CARD.GOALS })
+                    .map((card) => card.get('name'))
+            );
+        },
+
+        listAllStrategies: function () {
+            console.log(
+                this.collection
+                    .where({ card: TYPES.CARD.STRATEGIES })
+                    .map((card) => card.get('name'))
+            );
+        },
+
+        listAllInterventions: function () {
+            console.log(
+                this.collection
+                    .where({ card: TYPES.CARD.INTERVENTIONS })
+                    .map((card) => card.get('name'))
+            );
+        },
+
+        listAllByType: function (type) {
+            console.log(
+                this.collection
+                    .where({ card: type })
+                    .map((card) => card.get('name'))
+            );
+        },
+
         getCardsByPhase: function (phase) {},
+
+        getCardsByGoal: function (goal) {},
 
         getCardsByStrategy: function (strategy) {},
 
@@ -240,7 +287,42 @@ window.onload = function () {
 
          ----------------------------------------------------------------------*/
 
-        getCardsWithoutLinksToGoals: function () {},
+        getCardsWithoutLinksToGoals: function () {
+            return this.collection.map((card) =>
+                !card.get('linkedGoal') ? card : false
+            );
+        },
+
+        aggregateStrategiesOf: function (goalName) {
+            return this.collection.where({
+                parent: this.getGoalByName(goalName).get('id'),
+                card: TYPES.CARD.STRATEGIES,
+            });
+        },
+
+        aggregateInterventionsOf: function (goalName) {
+            return this.collection.where({
+                parent: this.getGoalByName(goalName).get('id'),
+                card: TYPES.CARD.INTERVENTIONS,
+            });
+        },
+
+        getGoalByName: function (name) {
+            return this.collection.findWhere({ name }) || undefined;
+        },
+
+        linkCardToGoal: function (cardName, goalName) {
+            var card = this.getCard({ name: cardName });
+            if (!card) throw new Error(`${cardName} not found`);
+            var goal = this.getGoalByName(goalName);
+            if (!goal) throw new Error(`${goalName} not found`);
+            card.set({ parent: goal.get('id') });
+            return card.save();
+        },
+
+        goalExists: function (goal) {},
+
+        getGoalByAttr: function (attrs) {},
 
         //
 
