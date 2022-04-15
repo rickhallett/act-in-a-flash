@@ -238,35 +238,27 @@ window.onload = function () {
         },
 
         listAllGoals: function () {
-            console.log(
-                this.collection
-                    .where({ card: TYPES.CARD.GOALS })
-                    .map((card) => card.get('name'))
-            );
+            return this.collection
+                .where({ card: TYPES.CARD.GOALS })
+                .map((card) => card.get('name'));
         },
 
         listAllStrategies: function () {
-            console.log(
-                this.collection
-                    .where({ card: TYPES.CARD.STRATEGIES })
-                    .map((card) => card.get('name'))
-            );
+            return this.collection
+                .where({ card: TYPES.CARD.STRATEGIES })
+                .map((card) => card.get('name'));
         },
 
         listAllInterventions: function () {
-            console.log(
-                this.collection
-                    .where({ card: TYPES.CARD.INTERVENTIONS })
-                    .map((card) => card.get('name'))
-            );
+            return this.collection
+                .where({ card: TYPES.CARD.INTERVENTIONS })
+                .map((card) => card.get('name'));
         },
 
         listAllByType: function (type) {
-            console.log(
-                this.collection
-                    .where({ card: type })
-                    .map((card) => card.get('name'))
-            );
+            return this.collection
+                .where({ card: type })
+                .map((card) => card.get('name'));
         },
 
         getCardsByPhase: function (phase) {},
@@ -318,10 +310,12 @@ window.onload = function () {
         linkCardToGoal: function (cardName, goalName) {
             var card = this.getCard({ name: cardName });
             if (!card) throw new Error(`${cardName} not found`);
+
             var goal = this.getGoalByName(goalName);
             if (!goal) throw new Error(`${goalName} not found`);
+
             card.set({ parent: goal.get('id') });
-            return card.save();
+            card.save();
         },
 
         goalExists: function (goal) {},
@@ -378,8 +372,15 @@ window.onload = function () {
     var card = (window.Card = Card);
     var cards = (window.Cards = Cards);
     var clear = (window.c = console.clear);
+    var las = (window.las = app.listAllStrategies.bind(app));
+    var lag = (window.lag = app.listAllGoals.bind(app));
+    var lai = (window.lai = app.listAllInterventions.bind(app));
+    var lctg = (window.lctg = app.linkCardToGoal.bind(app));
+    var gbu = (window.gbu = app.getBackup.bind(app));
+    var disableConsoleClear = window.disableConsoleClear = window.dcc = true;
+    var appRef = window.app = {app: app,  goals: lag(), strategies: las(), interventions: lai(), store: localStorage}
 
-    console.log('app:', app);
+    console.log(appRef)
 };
 
 //
