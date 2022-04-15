@@ -10,6 +10,8 @@ window.onload = function () {
     var appStart = Date.now();
 
     var clearPending = false;
+    
+    var persistConsole = false;
 
     var getDelta = function () {
         return (Date.now() - appStart).toString() + 'ms';
@@ -23,6 +25,8 @@ window.onload = function () {
             console.clear();
         }, t);
     };
+
+    if (!persistConsole) queueClear = _.noop;
 
     //
 
