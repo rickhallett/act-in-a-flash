@@ -383,8 +383,10 @@ window.onload = function (e) {
     var lai = (window.lai = app.listAllInterventions.bind(app));
     var lctg = (window.lctg = app.linkCardToGoal.bind(app));
     var gbu = (window.gbu = app.getBackup.bind(app));
+    var gcbn = (window.gcbn = app.getCardByName.bind(app))
+    var antc = (window.antc = app.addNotesToCard.bind(app))
     var disableConsoleClear = window.disableConsoleClear = window.dcc = true;
-    var appRef = window.app = {app: app,  goals: lag(), strategies: las(), interventions: lai(), store: localStorage}
+    var appRef = window.app = {view: app,  goals: lag(), strategies: las(), interventions: lai(), store: localStorage}
 
     console.log(appRef)
 };
