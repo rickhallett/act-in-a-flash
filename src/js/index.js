@@ -144,6 +144,10 @@ window.onload = function (e) {
                 );
             });
 
+            cards.on('change', function(card) {
+                card.save();
+            });
+
             cards.fetch({
                 success: function (collection) {
                     console.log(
