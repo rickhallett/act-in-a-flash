@@ -399,6 +399,11 @@ window.onload = function (e) {
 
 /**
  * TODO LIST
+ * 
+ * add sub-items to cards to allow for appending of notes contained with the book text; these can also be drilled
+ *      this method probably doesn't need to throw errows, but console.warn instead
+ *      it could also smartly add the elements of the notes array that dont already exist, and warn the others have not
+ *          been duplicated
  *
  * build the functions that will enable the linking of cards to their
  * respective goals
