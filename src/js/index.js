@@ -208,6 +208,52 @@ window.onload = function (e) {
             }
         },
 
+        addNotesToCard: function(cardName, notes) {
+            var isSingleNote = !Array.isArray(notes);
+            var card = this.getCardByName(cardName);
+
+            if (!card) throw new Error(`${cardName} does not exist`);
+
+            var prevNotes = card.get('notes');
+
+            if(isSingleNote) {
+                console.log('%cProcessing single note', 'color: gray;')
+                var note = notes;
+                // debugger;
+
+                if (prevNotes && prevNotes.includes(note)) {
+                    throw new Error(`\n\nCard: '${cardName}'\nNote: '${note}' already exists\n`)
+                }
+
+                if (!prevNotes) {
+                    console.log(`%cAdding first note: ${note}`, 'colour: green;')
+                    card.set({notes: [note]});
+                    return card;
+                }
+
+                console.log(`%cAdding ${note} to ${prevNotes}`, 'color: green;')
+                card.set({notes: prevNotes.concat(note)});
+                return card;                
+            } else {
+                console.log('%cProcessing batch notes', 'color: gray;')
+                prevNotes = card.get('notes'); 
+
+                if (prevNotes && _.intersection(prevNotes, notes).length) {
+                    throw new Error(`\n\nCard: '${cardName}' already includes ${_.intersection(prevNotes, notes).length} of ${notes.length} notes:\n\n ${_.intersection(prevNotes, notes).map(function(n, i) {
+                        return `${i+1} - ${n}`;
+                    }).join('\n\n AND \n\n')}\n`)
+                }
+
+                if (!prevNotes) {
+                    card.set({notes: notes});
+                    return card;
+                }
+
+                card.set({notes: prevNotes.concat(notes)});
+                return card;
+            }
+        },
+
         //
 
         //
@@ -400,9 +446,9 @@ window.onload = function (e) {
 /**
  * TODO LIST
  * 
- * add sub-items to cards to allow for appending of notes contained with the book text; these can also be drilled
- *      this method probably doesn't need to throw errows, but console.warn instead
- *      it could also smartly add the elements of the notes array that dont already exist, and warn the others have not
+ * [x] add sub-items to cards to allow for appending of notes contained with the book text; these can also be drilled
+ *      [ ] this method probably doesn't need to throw errows, but console.warn instead
+ *      [ ] it could also smartly add the elements of the notes array that dont already exist, and warn the others have not
  *          been duplicated
  *
  * build the functions that will enable the linking of cards to their
