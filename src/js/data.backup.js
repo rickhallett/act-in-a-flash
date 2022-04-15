@@ -73,6 +73,7 @@ var BACKUP = [
         card: 'STRATEGIES',
         body: 'Detailed discussions of the clients experience of/with the problem',
         id: 'ad0f07d3-6b79-4f30-9e0a-21070f3a96dc',
+        parent: 'f212b538-530f-4e02-98c2-cf6d71774927',
     },
     {
         name: 'Problem evaluation',
@@ -80,6 +81,7 @@ var BACKUP = [
         card: 'STRATEGIES',
         body: 'Help the client to evaluate their experience in connection to workability, vitality and normalisation',
         id: 'a2c57c41-92a2-458e-9554-5ffe6036e840',
+        parent: 'f212b538-530f-4e02-98c2-cf6d71774927',
     },
     {
         name: 'What do you want from life?',
@@ -129,6 +131,7 @@ var BACKUP = [
         card: 'STRATEGIES',
         body: 'Develop workability as a yardstick',
         id: 'f11da5af-1304-49b6-9a38-b6a5fc03905e',
+        parent: '4a49e8df-e89f-4d55-aa5e-bdb0eb13b508',
     },
     {
         name: 'Evoke creative hopelessness',
@@ -136,6 +139,7 @@ var BACKUP = [
         card: 'STRATEGIES',
         body: 'Evoke creative hopelessness',
         id: '97d34a09-a452-4e29-82c5-7d5846810de8',
+        parent: '96cfdcc8-97bf-4ffd-8524-d508b7afdc44',
     },
     {
         name: 'Distinguish blame from responsibility',
@@ -143,6 +147,7 @@ var BACKUP = [
         card: 'STRATEGIES',
         body: 'Distinguish blame from responsibility',
         id: '2d064bf9-d24b-4215-9254-3b8ccbaca202',
+        parent: '96cfdcc8-97bf-4ffd-8524-d508b7afdc44',
     },
     {
         name: 'Destablising Understanding',
