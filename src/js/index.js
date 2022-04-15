@@ -10,7 +10,7 @@ window.onload = function (e) {
     var appStart = Date.now();
 
     var clearPending = false;
-    
+
     var persistConsole = false;
 
     var getDelta = function () {
@@ -144,7 +144,7 @@ window.onload = function (e) {
                 );
             });
 
-            cards.on('change', function(card) {
+            cards.on('change', function (card) {
                 card.save();
             });
 
@@ -208,7 +208,7 @@ window.onload = function (e) {
             }
         },
 
-        addNotesToCard: function(cardName, notes) {
+        addNotesToCard: function (cardName, notes) {
             var isSingleNote = !Array.isArray(notes);
             var card = this.getCardByName(cardName);
 
@@ -216,40 +216,56 @@ window.onload = function (e) {
 
             var prevNotes = card.get('notes');
 
-            if(isSingleNote) {
-                console.log('%cProcessing single note', 'color: gray;')
+            if (isSingleNote) {
+                console.log('%cProcessing single note', 'color: gray;');
                 var note = notes;
-                // debugger;
 
                 if (prevNotes && prevNotes.includes(note)) {
-                    throw new Error(`\n\nCard: '${cardName}'\nNote: '${note}' already exists\n`)
+                    throw new Error(
+                        `\n\nCard: '${cardName}'\nNote: '${note}' already exists\n`
+                    );
                 }
 
                 if (!prevNotes) {
-                    console.log(`%cAdding first note: ${note}`, 'colour: green;')
-                    card.set({notes: [note]});
+                    console.log(
+                        `%cAdding first note: ${note}`,
+                        'colour: green;'
+                    );
+                    card.set({ notes: [note] });
                     return card;
                 }
 
-                console.log(`%cAdding ${note} to ${prevNotes}`, 'color: green;')
-                card.set({notes: prevNotes.concat(note)});
-                return card;                
+                console.log(
+                    `%cAdding ${note} to ${prevNotes}`,
+                    'color: green;'
+                );
+                card.set({ notes: prevNotes.concat(note) });
+                return card;
             } else {
-                console.log('%cProcessing batch notes', 'color: gray;')
-                prevNotes = card.get('notes'); 
+                console.log('%cProcessing batch notes', 'color: gray;');
+                prevNotes = card.get('notes');
 
                 if (prevNotes && _.intersection(prevNotes, notes).length) {
-                    throw new Error(`\n\nCard: '${cardName}' already includes ${_.intersection(prevNotes, notes).length} of ${notes.length} notes:\n\n ${_.intersection(prevNotes, notes).map(function(n, i) {
-                        return `${i+1} - ${n}`;
-                    }).join('\n\n AND \n\n')}\n`)
+                    throw new Error(
+                        `\n\nCard: '${cardName}' already includes ${
+                            _.intersection(prevNotes, notes).length
+                        } of ${notes.length} notes:\n\n ${_.intersection(
+                            prevNotes,
+                            notes
+                        )
+                            .map(function (n, i) {
+                                return `${i + 1} - ${n}`;
+                            })
+                            .join('\n\n AND \n\n')}\n`
+                    );
                 }
 
                 if (!prevNotes) {
-                    card.set({notes: notes});
+                    card.set({ notes: notes });
                     return card;
                 }
 
-                card.set({notes: prevNotes.concat(notes)});
+                card.set({ notes: prevNotes.concat(notes) });
                 return card;
             }
         },
@@ -429,12 +445,18 @@ window.onload = function (e) {
     var lai = (window.lai = app.listAllInterventions.bind(app));
     var lctg = (window.lctg = app.linkCardToGoal.bind(app));
     var gbu = (window.gbu = app.getBackup.bind(app));
-    var gcbn = (window.gcbn = app.getCardByName.bind(app))
-    var antc = (window.antc = app.addNotesToCard.bind(app))
-    var disableConsoleClear = window.disableConsoleClear = window.dcc = true;
-    var appRef = window.app = {view: app,  goals: lag(), strategies: las(), interventions: lai(), store: localStorage}
+    var gcbn = (window.gcbn = app.getCardByName.bind(app));
+    var antc = (window.antc = app.addNotesToCard.bind(app));
+    var disableConsoleClear = (window.disableConsoleClear = window.dcc = true);
+    var appRef = (window.app = {
+        view: app,
+        goals: lag(),
+        strategies: las(),
+        interventions: lai(),
+        store: localStorage,
+    });
 
-    console.log(appRef)
+    console.log(appRef);
 };
 
 //
@@ -445,7 +467,7 @@ window.onload = function (e) {
 
 /**
  * TODO LIST
- * 
+ *
  * [x] add sub-items to cards to allow for appending of notes contained with the book text; these can also be drilled
  *      [ ] this method probably doesn't need to throw errows, but console.warn instead
  *      [ ] it could also smartly add the elements of the notes array that dont already exist, and warn the others have not
