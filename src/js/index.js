@@ -1,4 +1,4 @@
-window.onload = function () {
+window.onload = function (e) {
     //
 
     /**----------------------------------------------------------------------
@@ -320,6 +320,8 @@ window.onload = function () {
 
         goalExists: function (goal) {},
 
+        getGoalById: function (attrs) {},
+
         getGoalByAttr: function (attrs) {},
 
         //
@@ -394,32 +396,12 @@ window.onload = function () {
  *
  * build the functions that will enable the linking of cards to their
  * respective goals
- *      linkCardToGoal(card: Card, goal: string): boolean
  *
  *      goalExists(goal: string): boolean
  *
  *      getGoalId(name: string): string
  *
  *      getGoalByAttr(attr: obj): Card
- *
- *
- * build helper functions that will allow for easier accessing of
- * certain parts of the dataset
- *
- *      aggregateStrategiesOfGoal(goal: string)
- *          find card by goal name
- *          find all strategies that point to the found card
- *          create a new attribute "strategies" = []
- *          append all found to strategies list, if not already in list
- *
- *      aggregateInterventionsOfGoal(goal: string)
- *          find card by goal name
- *          find all interventions that point to the found card
- *          if not already defined, create a new attribute "interventions" = []
- *          append all found to interventions list, if not already in list
- *
- *      TODO: is it useful to have these links stored on the database models, or
- *            is it better to collate them on demand?
  *
  * Error Handling
  *      Determine a pattern for error handling; what are the purposes of errors
